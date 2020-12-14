@@ -16,6 +16,7 @@ namespace PersonBookExe
             PersonBookExe();
         }
 
+         //Menu of the program
         public static void PrintMenu()
         {
             Console.WriteLine("\n*************************** \n" +
@@ -27,6 +28,7 @@ namespace PersonBookExe
                               "***************************\n");
         }
 
+         // list of the person in the book
         public static void PersonList()
         {
             if (people.Count == 0)
@@ -41,6 +43,7 @@ namespace PersonBookExe
             }
         }
 
+        //adding person to the book
         public static void AddPerson()
         {
             Console.Write("Please Enter The Person Name : ");
@@ -55,6 +58,7 @@ namespace PersonBookExe
             people.Add(newPerson);
         }
 
+        // changing information about a person on the book
         public static void UpdatePerson()
         {
             PersonList();
@@ -91,6 +95,7 @@ namespace PersonBookExe
             }
         }
 
+        // deleting wanted person from the book
         public static void RemovePerson()
 
         {
@@ -105,6 +110,7 @@ namespace PersonBookExe
             }
         }
 
+        // person book program
         public static void PersonBookExe()
         {
             var exit = false;
