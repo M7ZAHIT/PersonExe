@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PersonBookExe
 {
@@ -8,12 +10,8 @@ namespace PersonBookExe
 
         static void Main(string[] args)
         {
-            var huso = new Person("Huseyin", "Zahit");
-            huso.setID(1);
-            people.Add(huso);
 
-            PrintMenu();
-            PersonBookExe();
+            RunProgram();
         }
 
         public static void PrintMenu()
@@ -27,18 +25,17 @@ namespace PersonBookExe
                               "***************************\n");
         }
 
-        public static void PersonList()
+        public static void ListPerson()
         {
             if (people.Count == 0)
             {
-                Console.WriteLine("No person Exist on the book");
-
+                Console.Write("No person Exist on the book");
             }
-            foreach (var person in people)
+            foreach (var selectedPerson in people)
             {
-                Console.WriteLine("Id : " + person.getId() + " , Name : " + person.getFirstName() + " , LastName : " +
-                                  person.getLastName());
+                Console.WriteLine($"Id : {selectedPerson.GetId()}  , Name : {selectedPerson.GetFirstName()} , LastName :{selectedPerson.GetLastName()} ");
             }
+            
         }
 
         public static void AddPerson()
@@ -48,24 +45,23 @@ namespace PersonBookExe
             Console.Write("Please Enter The Person LastName : ");
             var lastName = Console.ReadLine();
 
-            var newPerson = new Person(newName, lastName);
-            var newId = people.Count;
-
-            newPerson.setID(newId + 1);
+            var newId = people.Count + 1;
+            var newPerson = new Person(newId, newName, lastName);
             people.Add(newPerson);
         }
 
         public static void UpdatePerson()
         {
-            PersonList();
-            Console.Write("Please Enter A Person ID : ");
-            var newId = Convert.ToInt32(Console.ReadLine());
-            foreach (var person in people)
+            ListPerson();
+            if (people.Count!=0)
             {
-                if (newId == person.getId())
+                Console.Write("Please Enter The Person ID you want to update : ");
+                string input = Console.ReadLine();
+                bool isInt = Int32.TryParse(input, out var id);
+                if (isInt)
                 {
-                    Console.WriteLine("Person ID : " + person.getId() + ", Name : " + person.getFirstName() +
-                                      ", Lastname : " + person.getLastName());
+                    Console.WriteLine("Person ID : " + people[id].GetId() + ", Name : " + people[id].GetFirstName() +
+                                      ", Lastname : " + people[id].GetLastName());
                     Console.WriteLine("What do you want to update?" +
                                       "\n 1-) Name" +
                                       "\n 2-) LastName");
@@ -75,68 +71,90 @@ namespace PersonBookExe
                         case 1:
                             Console.WriteLine("Please Enter The New Name!");
                             var newName = Console.ReadLine();
-                            person.setFirstName(newName);
+                            people[id].SetFirstName(newName);
                             break;
                         case 2:
                             Console.WriteLine("Please Enter The New Last Name!");
                             var lastName = Console.ReadLine();
-                            person.setLastName(lastName);
+                            people[id].SetLastName(lastName);
                             break;
                     }
                 }
                 else
                 {
+                    Console.WriteLine("Invalid value");
+                }
+                if (id > people.Count || id < 0 )
+                {
                     Console.WriteLine("There is no Person with this  ID");
                 }
             }
-        }
-
-        public static void RemovePerson()
-
-        {
-            Console.Write("Please Enter The Person ID you want to remove : ");
-            var Id = Convert.ToInt32(Console.ReadLine());
-            for (var i = 0; i <= people.Count; i++)
+            else
             {
-                if (Id == people[i].getId())
+                Console.WriteLine(" to update! ");
+            }
+          
+        }
+    
+
+    public static void RemovePerson()
+        {
+            ListPerson();
+            if (people.Count!=0)
+            {
+                Console.Write("Please Enter The Person ID you want to remove : ");
+                string input = Console.ReadLine();
+                bool isInt = Int32.TryParse(input, out var id);
+                if (isInt)
                 {
-                    people.RemoveAt(i);
+                    people.RemoveAt(id);
                 }
+            }
+            else
+            {
+                Console.Write(" to delete! \n");
             }
         }
 
-        public static void PersonBookExe()
+        public static void RunProgram()
         {
+            PrintMenu();
             var exit = false;
             while (!exit)
             {
-
-                Console.WriteLine("Please Select An Option");
-                var option = Convert.ToInt32(Console.ReadLine());
-                switch (option)
+                Console.WriteLine("\nPlease Select An Option");
+                string input = Console.ReadLine();
+                bool isInt = Int32.TryParse(input, out var option);
+                if (isInt)
                 {
-                    case 1:
-                        PersonList();
-                        break;
-                    case 2:
-                        AddPerson();
-                        break;
-                    case 3:
-                        UpdatePerson();
-                        break;
-                    case 4:
-                        RemovePerson();
-                        break;
-                    case 5:
-                        exit = true;
-                        break;
-                    default:
-                        Console.WriteLine("There is no such option!!!");
-                        break;
+                    switch (option)
+                    {
+                        case 1:
+                            ListPerson();
+                            break;
+                        case 2:
+                            AddPerson();
+                            break;
+                        case 3:
+                            UpdatePerson();
+                            break;
+                        case 4:
+                            RemovePerson();
+                            break;
+                        case 5:
+                            exit = true;
+                            break;
+                        default:
+                            Console.WriteLine("There is no such option!!!");
+                            break;
+                    }
                 }
-
-                PrintMenu();
+                else
+                {
+                    Console.WriteLine("Invalid option");
+                }
             }
         }
     }
+}
 

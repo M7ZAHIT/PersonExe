@@ -7,39 +7,35 @@
         private string _firstName;
         private string _surName;
 
-        public Person(string firstName, string lastName)
+        public Person(int id,string firstName, string lastName)
         {
-
+            this._Id = id;
             this._firstName = firstName;
             this._surName = lastName;
         }
 
-        public int getId()
+        public int GetId()
         {
             return this._Id;
         }
 
-        public string getFirstName()
+        public string GetFirstName()
         {
             return this._firstName;
         }
 
-        public string getLastName()
+        public string GetLastName()
         {
             return this._surName;
         }
 
-        public void setID(int id)
-        {
-            this._Id = id;
-        }
 
-        public void setFirstName(string newName)
+        public void SetFirstName(string newName)
         {
             this._firstName = newName;
         }
 
-        public void setLastName(string newSurname)
+        public void SetLastName(string newSurname)
         {
             this._surName = newSurname;
         }
