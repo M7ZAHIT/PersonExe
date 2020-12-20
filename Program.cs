@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.Linq;
-=======
->>>>>>> eef7c043af812032082089b03383d86c8634fe44
 
 namespace PersonBookExe
 {
@@ -17,7 +14,6 @@ namespace PersonBookExe
             RunProgram();
         }
 
-         //Menu of the program
         public static void PrintMenu()
         {
             Console.WriteLine("\n*************************** \n" +
@@ -29,12 +25,7 @@ namespace PersonBookExe
                               "***************************\n");
         }
 
-<<<<<<< HEAD
         public static void ListPerson()
-=======
-         // list of the person in the book
-        public static void PersonList()
->>>>>>> eef7c043af812032082089b03383d86c8634fe44
         {
             if (people.Count == 0)
             {
@@ -47,7 +38,6 @@ namespace PersonBookExe
             
         }
 
-        //adding person to the book
         public static void AddPerson()
         {
             Console.Write("Please Enter The Person Name : ");
@@ -60,7 +50,6 @@ namespace PersonBookExe
             people.Add(newPerson);
         }
 
-        // changing information about a person on the book
         public static void UpdatePerson()
         {
             ListPerson();
@@ -108,13 +97,7 @@ namespace PersonBookExe
         }
     
 
-<<<<<<< HEAD
     public static void RemovePerson()
-=======
-        // deleting wanted person from the book
-        public static void RemovePerson()
-
->>>>>>> eef7c043af812032082089b03383d86c8634fe44
         {
             ListPerson();
             if (people.Count!=0)
@@ -133,12 +116,7 @@ namespace PersonBookExe
             }
         }
 
-<<<<<<< HEAD
         public static void RunProgram()
-=======
-        // person book program
-        public static void PersonBookExe()
->>>>>>> eef7c043af812032082089b03383d86c8634fe44
         {
             PrintMenu();
             var exit = false;
@@ -180,4 +158,3 @@ namespace PersonBookExe
     }
 }
 
-}
