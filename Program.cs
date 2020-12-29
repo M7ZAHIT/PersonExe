@@ -14,7 +14,7 @@ namespace PersonBookExe
             RunProgram();
         }
 
-        public static void PrintMenu()
+        static void PrintMenu()
         {
             Console.WriteLine("\n*************************** \n" +
                               "* 1) Print Person List    * \n" +
@@ -24,7 +24,6 @@ namespace PersonBookExe
                               "* 5) Exit                 * \n" +
                               "***************************\n");
         }
-
         static void ListPerson()
         {
             if (people.Count == 0)
@@ -35,7 +34,6 @@ namespace PersonBookExe
             {
                 PrintPerson(selectedPerson.Id);
             }
-            
         }
 
         static void AddPerson()
@@ -44,13 +42,12 @@ namespace PersonBookExe
             var newName = Console.ReadLine();
             Console.Write("Please Enter The Person LastName : ");
             var lastName = Console.ReadLine();
-
             var newId = people.Count + 1;
             var newPerson = new Person(newId, newName, lastName);
             people.Add(newPerson);
         }
 
-         static void UpdatePerson()
+        static void UpdatePerson()
          {
              const int updateNameCase = 1;
              const int updateLastNameCase = 2;
@@ -63,7 +60,6 @@ namespace PersonBookExe
                 
                 if (isParsed && IsPersonExist(id) )
                 {
-                
                     PrintPerson(id);
                     Console.WriteLine("What do you want to update?" +
                                       "\n 1-) Name" +
@@ -107,12 +103,10 @@ namespace PersonBookExe
                     Console.WriteLine("Id is not in the person list!\n");
                     return;
                 }
-
                 if (isParsed && IsPersonExist(id))
                 {
                     people.Remove(person);    
                 }
-                
             }
             else
             {
